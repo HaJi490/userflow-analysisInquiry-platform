@@ -76,7 +76,8 @@
 
 ---
 ## 📊 Database ERD
-```
+
+```mermaid
 erDiagram
     MEMBER ||--o{ INQUIRY : "creates"
     INQUIRY ||--o{ INQUIRY_STATUS_HISTORY : "tracks"
@@ -85,26 +86,26 @@ erDiagram
         string id PK "아이디"
         string username "이름"
         string password "비밀번호"
-        string role "ROLE_USER, ROLE_MANAGER"
+        string role "USER, MANAGER"
         datetime create_date "가입일"
     }
 
     INQUIRY {
-        long id PK
-        long member_id FK
+        long id PK "문의 ID"
+        long member_id FK "작성자 ID"
         string title "문의 제목"
         string content "문의 내용"
         string organization "기관명"
-        string status "승인, 미확인, 진행중, 완료"
-        datetime inquiry_date
+        string status "승인, 미확인, 진행중, 완료, 거절"
+        datetime inquiry_date "적성일"
     }
 
     INQUIRY_STATUS_HISTORY {
-        long id PK
-        long inquiry_id FK
+        long id PK "히스토리 ID"
+        long inquiry_id FK "문의 ID"
         string status "상태"
-        string comment "상담 내용/피드백"
-        datetime modified_at
+        string comment "상담 내용"
+        datetime modified_at "수정일"
     }
 ```
 <br>
